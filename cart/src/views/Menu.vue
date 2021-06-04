@@ -1,0 +1,113 @@
+<template>
+  <div class="menu">
+    <header>
+      <div class="background">
+        <img id="imgHeader" src="@/assets/graphics/graphics-header.svg" alt="header" />
+      </div>
+      <div class="middle">
+        <a
+            href="#"
+            class="a-tag d-flex flex-column text-decoration-none align-items-center"
+            @click="$router.push({ path: '/nav' })"
+        >
+          <img src="@/assets/graphics/bag.svg" alt="burger" />
+        </a>
+        <h2>Meny</h2>
+        <ShoppingIcon @showAllOrder="showAllOrder" class="cartImage"></ShoppingIcon>
+      </div>
+    </header>
+    <MyOrder v-bind:visible="shownOrder"></MyOrder>
+    <MenuItems v-show="menu.menus"
+        :menu="item"
+        v-for="item in menu.menus"
+        :key="item.id"
+        @addToCart="addToCart(item)"
+        >
+    </MenuItems>
+
+    <img src="@/assets/graphics/graphics-footer.svg" alt="footer" />
+  </div>
+</template>
+<script>
+import {mapState, mapGetters} from "vuex"
+import ShoppingIcon from "@/components/ShoppingIcon.vue";
+import MenuItems from "@/components/MenuItems.vue";
+import MyOrder from "@/components/Myorder.vue";
+export default {
+  name: "Menu",
+  components: {
+    ShoppingIcon,
+    MenuItems,
+    MyOrder,
+  },
+  data() {
+    return {
+      shownOrder: true,
+    };
+  },
+  async created() {
+    await this.$store.dispatch("getMenus");
+    this.loading = false;
+  },
+  methods: {
+    addToCart(item) {
+       let anItem = this.getMenuByID(item.id);
+       if(anItem!=null)
+          this.$store.dispatch('addToCart', anItem)
+   },
+    showAllOrder() {
+        this.shownOrder = !this.shownOrder;
+    },
+  },
+  //To map computed property to state
+  computed: {
+    getUser(){return  this.$store.state.user.user},
+    ...mapGetters(['getMenuByID','menuLength']),
+    ...mapState(['menu','order','user'])
+  }
+
+};
+</script>
+<style scoped>
+.menu {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top:  -8%;
+}
+.background {
+  width: 1900px;
+  height: 370px;
+}
+.cartImage{
+  align-content: left;
+  margin-right: 0%;
+  margin-left: 80;
+}
+#imgHeader{
+  width:100%;
+  margin-top: 0%;
+  margin-left: 0%;
+}
+
+h1{
+  font-size: 2rem;
+  margin-left: 5%;
+  margin-top: 5%;
+}
+
+img[alt="burger"] {
+  width: 50px;
+  right: 50rem;
+  bottom: 12rem;
+  position: relative;
+  cursor: pointer;
+
+}
+.info{
+  display: block;
+}
+
+</style>
