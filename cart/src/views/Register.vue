@@ -75,23 +75,25 @@ export default {
            this.$store.dispatch('addUser', user)
         }
         //get Item store in the cart
-        let cart=this.$store.dispatch('getCart');
-
-        console.log(cart)
+        //let cart=this.$store.dispatch('getCart');
+        let cart=this.$store.state.order.cart;
         let today = new Date();
         let date = today.getFullYear()+'-'+String(today.getMonth() + 1).padStart(2, '0')+'-'+String(today.getDate()).padStart(2, '0');//January is 0
+        console.log(this.$store.state.order.cart)
         let order={
           user:user,
           item:cart,
           date:date
         }
         // then add to order
+
         this.$store.dispatch('addOrder', order)
         this.name=''
         this.email='',
         this.gdpr=false
         //show order history
-        let orderHistory=this.$store.dispatch("getOrderHistory");
+        //let orderHistory=this.$store.dispatch("getOrderHistory");
+        let orderHistory=this.$store.state.order.order;
         console.log(orderHistory)
       }
 

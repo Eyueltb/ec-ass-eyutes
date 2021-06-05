@@ -6,7 +6,7 @@
         <img src="@/assets/graphics/bag.svg" alt="box" />
       </a>
     </header>
-    <section v-show="getOrder!=null">
+    <section v-show="this.$store.state.order.order==null">
       <img src="@/assets/graphics/user.svg" alt="profile" />
       <h1>Sixten Kaffelover</h1>
       <span>sixten.kaffelover@zocom.se</span>
@@ -14,15 +14,20 @@
     </section>
     <section>
       <img src="@/assets/graphics/user.svg" alt="profile" />
-      <h1>{{getUser}}</h1>
-      <span id="pro">{{getUser}}</span>
+      <ul v-show="getOrder!=null" v-for="order in getOrder"  :key="order.id">
+        <h2> customer order the product: </h2>
+      <span> name: {{order.user.name}}</span>
+      <span id="pro"> email: {{order.user.email}}</span>
       <h2>Orderhistorik</h2>
-      <h3>{{getUser}}</h3> Orders the following:
-      <ul v-for="item in getOrder "  :key="item.id">
-        <h4>{{item.title}}</h4>
-        <a>{{item.desc}}</a>
-        <a>{{item.price}}</a>
+      <h3>user: {{order.user.name}}</h3> Orders the following:
+        <ul v-for="item1 in order.item"  :key="item1.id">
+        <h4>{{item1.title}}</h4>
+        <h5>{{item1.price}}</h5>
+          <h4>{{item1.quantity}}</h4>
+          <h5>{{item1.desc}}</h5>
       </ul>
+      </ul>
+
 
 
     </section>
@@ -39,9 +44,9 @@ export default {
 
    },
    computed: {
-     getUser(){return  this.$store.dispatch('getUser') },
-     getOrder(){ return this.$store.state.order.order;},
-     getCart(){ return this.$store.state.order.cart;},
+     getUser(){return  this.$store.dispatch('getOrderUser') },
+     getOrder(){ return this.$store.state.order.order},
+     getOrderItems(){ return this.$store.dispatch('getOrderItems');},
      ...mapState(['cart','user']),
      ...mapGetters(['getUsersByID']),
   }

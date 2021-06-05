@@ -23,9 +23,17 @@ export const mutations = {
         }
     },
     GET_CART(state){
-        return state.cart.then(result=>{
-            console.log(+" "+result.data);
-        }).catch(err=>console.log(err));
+        if(state.cart!=null){
+             return state.cart
+        }
+    },
+    GET_ORDER_USER(state){
+        return state.order.filter(order1=>order1['user']);
+        //if(state.order!=null){ }
+    },
+    GET_ORDER_ITEMS(state){
+        return state.order.map(order1=>order1['item']);
+        //if(state.order!=null){ }
     },
     ARROW_DOWN(state, payload){
         const deductOne = state.cart.find((item) => item.id === payload.id);
@@ -75,7 +83,6 @@ export const actions={
 
     },
     getCart({ commit}){
-
        commit("GET_CART");
     },
     cartTotalRemove({ commit}) {
@@ -92,6 +99,12 @@ export const actions={
     },
     getOrderHistory({ commit}){
         commit("GET_ORDER_HISTORY");
+    },
+    getOrderUser({commit}){
+        commit("GET_ORDER_USER");
+    },
+    getOrderItems({commit}){
+        commit("GET_ORDER_ITEMS");
     }
 }
 export const getters={

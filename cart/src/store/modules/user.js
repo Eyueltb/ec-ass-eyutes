@@ -1,5 +1,5 @@
 export const state={
-    users:{ id: '1', name: 'dawit',email:'dawit@kth.se' },
+    //users:{ id: '1', name: 'dawit',email:'dawit@kth.se' },
     user:[],
 }
 export const mutations = {
@@ -11,9 +11,6 @@ export const mutations = {
     },
     GET_USER(state){
         if(state.user!=null){
-            state.user.forEach(u =>
-                console.log(u.name)
-            )
             return state.user;
         }
    },
