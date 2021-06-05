@@ -87,6 +87,7 @@ export default {
 <style scoped>
 .all{
   background-color: rgba(0, 0, 0, 0.788);
+  color: #ffffff;
 }
 img[alt="profile"] {
   margin: 20px;
