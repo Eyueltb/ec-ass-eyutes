@@ -32,8 +32,10 @@ export const mutations = {
         //if(state.order!=null){ }
     },
     GET_ORDER_ITEMS(state){
-        return state.order.map(order1=>order1['item']);
-        //if(state.order!=null){ }
+
+       if(state.order!=null){
+           return state.order.filter(order1=>order1.item);
+       }
     },
     ARROW_DOWN(state, payload){
         const deductOne = state.cart.find((item) => item.id === payload.id);

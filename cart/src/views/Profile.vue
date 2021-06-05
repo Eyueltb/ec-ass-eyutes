@@ -14,18 +14,33 @@
     </section>
     <section>
       <img src="@/assets/graphics/user.svg" alt="profile" />
-      <ul v-show="getOrder!=null" v-for="order in getOrder"  :key="order.id">
-        <h2> customer order the product: </h2>
-      <span> name: {{order.user.name}}</span>
-      <span id="pro"> email: {{order.user.email}}</span>
+       <ul v-show="getOrder!=null" v-for="order in getOrder"  :key="order.id">
+
+        <h2> Order History by customer: </h2>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>email</th>
+           </tr>
+          <tr>
+            <td>{{order.user.name}}</td>
+            <td>{{order.user.email}}</td>
+          </tr>
+        </table>
       <h2>Orderhistorik</h2>
-      <h3>user: {{order.user.name}}</h3> Orders the following:
-        <ul v-for="item1 in order.item"  :key="item1.id">
-        <h4>{{item1.title}}</h4>
-        <h5>{{item1.price}}</h5>
-          <h4>{{item1.quantity}}</h4>
-          <h5>{{item1.desc}}</h5>
-      </ul>
+      <table>
+          <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Qunatity</th>
+          </tr>
+          <tr v-for="item1 in order.item"  :key="item1.id">
+            <td>{{item1.title}}</td>
+            <td>{{item1.price}}</td>
+            <td>{{item1.quantity}}</td>
+          </tr>
+          </table>
+
       </ul>
 
 
@@ -71,6 +86,22 @@ img[alt="box"] {
   */
   width: auto;
   cursor: pointer;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 95%;
+  margin-left: -2%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
 }
 #pro {margin-right: 0%;
 }
