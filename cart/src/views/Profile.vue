@@ -16,7 +16,7 @@
       <img src="@/assets/graphics/user.svg" alt="profile" />
        <ul v-show="getOrder!=null" v-for="order in getOrder"  :key="order.id">
 
-        <h2> Order History by customer: </h2>
+        <h2> Order History : </h2>
         <table>
           <tr>
             <th>OrderNumber</th>
@@ -27,6 +27,7 @@
             <td>{{order.date}}</td>
           </tr>
         </table>
+         <h3> customer: </h3>
         <table>
            <tr>
             <th>Name</th>
@@ -37,24 +38,29 @@
             <td>{{order.user.email}}</td>
           </tr>
         </table>
-      <h2>Orderhistorik</h2>
+      <h2>Ordered Items </h2>
       <table>
           <tr>
             <th>Title</th>
             <th>Price</th>
             <th>Qunatity</th>
+            <th>Total</th>
           </tr>
           <tr v-for="item1 in order.item"  :key="item1.id">
             <td>{{item1.title}}</td>
-            <td>{{item1.price}}</td>
+            <td>{{item1.price}} kr</td>
             <td>{{item1.quantity}}</td>
+         <td>{{item1.price * item1.quantity}} kr</td>
           </tr>
-       </table>
+         </table>
+         <table>
+         <tr>
+           <th>Sum</th>
+           <td>{{order.total}} kr</td>
 
+         </tr>
+         </table>
       </ul>
-
-
-
     </section>
     <img src="@/assets/graphics/graphics-footer.svg" alt="footer" />
   </div>

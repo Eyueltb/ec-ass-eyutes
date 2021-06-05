@@ -70,12 +70,14 @@ export default {
         let cart=this.$store.state.order.cart;
         let today = new Date();
         let date = today.getFullYear()+'/'+String(today.getMonth() + 1).padStart(2, '0')+'/'+String(today.getDate()).padStart(2, '0');//January is 0
+        let total=this.$store.state.order.total;
         console.log(this.$store.state.order.cart)
         let order={
           orderNumber:localStorage.getItem("orderNumber"),
           date:date,
           user:user,
           item:cart,
+          total:total
         }
         // then add to order
 
