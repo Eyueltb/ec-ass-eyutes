@@ -4,7 +4,7 @@
 
     <OrderItems
         v-show="orderItems.length > 0"
-       class="MyOrderItems"
+        class="MyOrderItems"
         v-for="thing in orderItems"
         :thing="thing"
         :key="thing.id"
@@ -34,7 +34,7 @@ export default {
   data() {
     return {
       myData:Object
-     };
+    };
   },
   props: {
     visible: Boolean,
@@ -42,14 +42,13 @@ export default {
   computed: {
 
     getOrder(){
-      console.log("hi my order"  )
       return this.$store.dispatch('getCart');
       //return this.$store.state.cart;
     },
     orderItems() {
-       return this.$store.state.order.cart;
-       //return this.$store.dispatch("getCart");
-   },
+      return this.$store.state.order.cart;
+      //return this.$store.dispatch("getCart");
+    },
     total(){
       return this.$store.state.order.total;
       //return this.$store.dispatch('getTotal');
@@ -112,7 +111,7 @@ h1 {
   font-weight: bold;
   font-size: 1.6rem;
   margin-bottom: 30%;
-  margin-left: -40%;
+  margin-left: -50%;
 }
 
 .button {

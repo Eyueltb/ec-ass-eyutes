@@ -19,6 +19,16 @@
         <h2> Order History by customer: </h2>
         <table>
           <tr>
+            <th>OrderNumber</th>
+            <th>Date</th>
+          </tr>
+          <tr>
+            <td>{{order.orderNumber}}</td>
+            <td>{{order.date}}</td>
+          </tr>
+        </table>
+        <table>
+           <tr>
             <th>Name</th>
             <th>email</th>
            </tr>
@@ -39,7 +49,7 @@
             <td>{{item1.price}}</td>
             <td>{{item1.quantity}}</td>
           </tr>
-          </table>
+       </table>
 
       </ul>
 

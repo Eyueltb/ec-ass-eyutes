@@ -11,19 +11,14 @@
         >
           <img src="@/assets/graphics/bag.svg" alt="burger" />
         </a>
-
-
     <div>
-
-      <h1>   Välkommen till AirBean-familjen!</h1>
+     <h1>   Välkommen till AirBean-familjen!</h1>
      <p>
         Genom att skapa ett konto nedan kan
         du spara och se din orderhistorik
       </p>
     </div>
-
     <div>
-
         <div class="name">
             <label >Name:</label>
             <input class="input-name" v-model="name" placeholder="Eyuel Belay">
@@ -31,19 +26,15 @@
         <div class="e-post">
             <label>Epost:</label> <input class="input-e-post" v-model="email" placeholder="eyuelb@kth.se">
         </div>
-
         <div>
-
             <input
                 v-model="gdpr"
                 class="gdpr"
                 type="radio"
                 id="gdpr"
                 value="gdpr" /> GDPR Ok!
-
             <a v-on:click="$router.push({ path: '/profile' })">
               <button  @click="onSubmit"  class="btn-brew" type="submit" >Brew me a cup!</button>
-
           </a>
         </div>
     <img src="@/assets/graphics/graphics-footer.svg" alt="footer" />
@@ -78,12 +69,13 @@ export default {
         //let cart=this.$store.dispatch('getCart');
         let cart=this.$store.state.order.cart;
         let today = new Date();
-        let date = today.getFullYear()+'-'+String(today.getMonth() + 1).padStart(2, '0')+'-'+String(today.getDate()).padStart(2, '0');//January is 0
+        let date = today.getFullYear()+'/'+String(today.getMonth() + 1).padStart(2, '0')+'/'+String(today.getDate()).padStart(2, '0');//January is 0
         console.log(this.$store.state.order.cart)
         let order={
+          orderNumber:localStorage.getItem("orderNumber"),
+          date:date,
           user:user,
           item:cart,
-          date:date
         }
         // then add to order
 

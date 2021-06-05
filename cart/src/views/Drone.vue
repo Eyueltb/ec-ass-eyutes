@@ -32,6 +32,7 @@ export default {
     getData() {
       this.orderNumber = generateOrderNr();
       this.e = generateETA();
+      localStorage.setItem("orderNumber",this.orderNumber);
     },
   },
   async mounted() {
